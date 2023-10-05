@@ -1,6 +1,7 @@
 const prompt = require("prompt-sync")({ sigint: true });
 const GeneratorHMAC = require("./GeneratorHMAC");
 const Rules = require("./Rules");
+const HelpTable = require("./HelpTable");
 
 
 class Game {
@@ -26,7 +27,7 @@ class Game {
         if(userMoveNumber == 0) {
             process.exit(0);
         } else if (userMoveNumber == "?") {
-            //HelpTable
+            new HelpTable().getTable(this.moves);
         } else {
             let userMove = this.moves[userMoveNumber - 1];
             console.log('Your move: ', userMove);
@@ -35,7 +36,8 @@ class Game {
 
             const rules = new Rules(this.moves);
             rules.sortArray(computerMove);
-            rules.getWinner(userMove);
+            let winnerStatus = rules.getWinner(userMove);
+            rules.printWinner(winnerStatus);
 
             console.log('HMAC key: ', genHmac.getKey());
         }

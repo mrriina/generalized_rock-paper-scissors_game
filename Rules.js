@@ -19,11 +19,27 @@ class Rules {
         let userMoveIndex = this.sortedmoves.indexOf(userMove);
     
         if (this.movesMiddleIndex === userMoveIndex) {
-            console.log("Draw");
+            return "Draw";
         } else if (this.movesMiddleIndex < userMoveIndex) {
-            console.log("You win!");
+            return "Win";
         } else {
-            console.log("You lose!");
+            return "Lose";
+        }
+    }
+
+    printWinner(status) {
+        switch (status) {
+            case "Draw":
+                console.log("Draw");
+                break;
+            
+            case "Win":
+                console.log("You win!");
+                break;
+        
+            case "Lose":
+                console.log("You lose!");
+                break;
         }
     }
 }
