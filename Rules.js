@@ -14,7 +14,6 @@ class Rules {
         this.sortedmoves = sortedmoves;
     }
 
-
     getWinner(userMove) {
         let userMoveIndex = this.sortedmoves.indexOf(userMove);
     
@@ -32,11 +31,9 @@ class Rules {
             case "Draw":
                 console.log("Draw");
                 break;
-            
             case "Win":
                 console.log("You win!");
                 break;
-        
             case "Lose":
                 console.log("You lose!");
                 break;

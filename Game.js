@@ -3,7 +3,6 @@ const GeneratorHMAC = require("./GeneratorHMAC");
 const Rules = require("./Rules");
 const HelpTable = require("./HelpTable");
 
-
 class Game {
     constructor(moves) {
         this.moves = moves;
@@ -31,7 +30,6 @@ class Game {
         } else {
             let userMove = this.moves[userMoveNumber - 1];
             console.log('Your move: ', userMove);
-
             console.log('Computer move: ', computerMove);
 
             const rules = new Rules(this.moves);
@@ -41,29 +39,21 @@ class Game {
 
             console.log('HMAC key: ', genHmac.getKey());
         }
-
-        
     }
 
     userInput(availableMoves) {
         let userMove = prompt(`Enter your move: `);
         let numberedUserMove = Number(userMove);
 
-        if (
-            userMove != "?" &&
-            (numberedUserMove < 0 ||
-                numberedUserMove > this.moves.length ||
-            isNaN(numberedUserMove))
-        ) {
-            console.log(`Available moves:\n${availableMoves}0 - exit\n? - help`);
+        if (userMove != "?" && (numberedUserMove < 0 || numberedUserMove > this.moves.length || isNaN(numberedUserMove))) {
+            console.log('Available moves:\n'+
+                    availableMoves +
+                    '0 - exit\n' +
+                    '? - help');
             return this.userInput(availableMoves);
         }
-
         return userMove;
     }
-
-
-    
 }
 
 module.exports = Game;
