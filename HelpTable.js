@@ -5,12 +5,21 @@ class HelpTable {
 
     getTable(moves) {
         const table = [];
+        const rules = new Rules(moves);
+        
+        const firstRow = [];
+        firstRow.push('v PC\User >');
+        moves.forEach((element) => {
+            rules.sortArray(element);
+            firstRow.push(element);
+        });
+        table.push(firstRow);
     
         moves.forEach((element) => {
           const row = [];
-          const rules = new Rules(moves);
           rules.sortArray(element);
-    
+          row.push(element);
+          
           moves.forEach((el) => {
             row.push(rules.getWinner(el));
           });
@@ -26,7 +35,12 @@ class HelpTable {
         const separator = maxLengths.map(length => '-'.repeat(length)).join('-+-');
 
         console.log(separator);
-        console.log(table.map(row => row.map((cell, i) => cell.padEnd(maxLengths[i])).join(' | ')).join('\n'));
+        console.log(table[0].map((cell, i) => cell.padEnd(maxLengths[i])).join(' | '));
+        console.log(separator);
+
+        for (let i = 1; i < table.length; i++) {
+            console.log(table[i].map((cell, i) => cell.padEnd(maxLengths[i])).join(' | '));
+        }
         console.log(separator);
     }
 }
